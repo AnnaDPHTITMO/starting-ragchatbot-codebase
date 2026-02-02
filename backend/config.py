@@ -8,9 +8,10 @@ load_dotenv()
 @dataclass
 class Config:
     """Configuration settings for the RAG system"""
-    # Anthropic API settings
-    ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "")
-    ANTHROPIC_MODEL: str = "claude-sonnet-4-20250514"
+    # LLM API settings (supports any LiteLLM-compatible provider)
+    # Model format: provider/model-name (e.g., anthropic/claude-sonnet-4-20250514, openai/gpt-4o, ollama/llama3)
+    LLM_API_KEY: str = os.getenv("LLM_API_KEY", os.getenv("ANTHROPIC_API_KEY", ""))
+    LLM_MODEL: str = os.getenv("LLM_MODEL", "anthropic/claude-sonnet-4-20250514")
     
     # Embedding model settings
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
